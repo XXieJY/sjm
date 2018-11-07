@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<title>免费小说书库_小说书库-{:C('WebName')}</title>
+	<meta name="keywords" content="免费小说书库,小说书库,{:C('WebName')}书库"/>
+	<meta name="description" content="{:C('WebName')}书库包括:武侠仙侠,奇幻玄幻,科幻灵异,都市言情,穿越女频,青春校园,历史军事,网游竞技,职业官场等在线小说阅读下载!"/>
+    <link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+	<link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+	<link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+
+</head>
+<body class="jingpin-body books-body">
+<!--公共头部-->
+<include file="Index:top"/>
+<!--公共头部结束-->
+<div class="wrap-jp">
+	<div class="categories-item">
+		<div class="categories-bq">
+			分类：
+		</div>
+		<ul class="categlries-list">
+			<li class="categlries-name {$type}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/50/state/{$Think.get.state}/vip/{$Think.get.vip}/click/{$Think.get.click}">全部</a>
+			</li>
+			<volist name="typeList" id="vo">
+				<li class="categlries-name <if condition="$Think.get.type eq $vo[type_id]">activite</if>">
+
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$vo.type_id}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/{$Think.get.click}">{$vo.book_type}</a>
+				</li>
+			</volist>
+
+		</ul>
+	</div>
+	<div class="categories-item">
+		<div class="categories-bq">
+			类型：
+		</div>
+		<ul class="categlries-list">
+			<li class="categlries-name {$gender}">
+				<a href="__ACTION__/gender/3/type/{$Think.get.type}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/{$Think.get.click}">不限</a>
+			</li>
+			<li class="categlries-name {$gender0}">
+				<a href="__ACTION__/gender/1/type/{$Think.get.type}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/{$Think.get.click}">男生</a>
+			</li>
+			<li class="categlries-name {$gender1}">
+				<a href="__ACTION__/gender/2/type/{$Think.get.type}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/{$Think.get.click}">女生</a>
+			</li>
+		</ul>
+	</div>
+	<div class="categories-item">
+		<div class="categories-bq">
+			进度：
+		</div>
+		<ul class="categlries-list">
+			<li class="categlries-name {$state}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/3/vip/{$Think.get.vip}/click/{$Think.get.click}">不限</a>
+			</li>
+			<li class="categlries-name {$state1}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/1/vip/{$Think.get.vip}/click/{$Think.get.click}">连载中</a>
+			</li>
+			<li class="categlries-name {$state2}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/2/vip/{$Think.get.vip}/click/{$Think.get.click}">已完结</a>
+			</li>
+		</ul>
+	</div>
+	<div class="categories-item" style="padding-left:80px;">
+		<div class="categories-bq" style="width:80px;">
+			作品属性：
+		</div>
+		<ul class="categlries-list">
+			<li class="categlries-name {$vip}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/{$Think.get.state}/vip/3/click/{$Think.get.click}">不限</a>
+			</li>
+			<li class="categlries-name {$vip0}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/{$Think.get.state}/vip/1/click/{$Think.get.click}">免费</a>
+			</li>
+			<li class="categlries-name {$vip1}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/{$Think.get.state}/vip/2/click/{$Think.get.click}">VIP</a>
+			</li>
+		</ul>
+	</div>
+	<div class="categories-item" style="padding-left:80px;">
+		<div class="categories-bq" style="width:80px;">
+			排序方式：
+		</div>
+		<ul class="categlries-list">
+			<li class="categlries-name {$cl0}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/0">最新更新</a>
+			</li>
+			<li class="categlries-name {$cl1}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/1">总点击</a>
+			</li>
+			<li class="categlries-name {$cl2}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/2">月点击</a>
+			</li>
+			<li class="categlries-name {$cl3}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/3">周点击</a>
+			</li>
+			<li class="categlries-name {$cl4}">
+				<a href="__ACTION__/gender/{$Think.get.gender}/type/{$Think.get.type}/state/{$Think.get.state}/vip/{$Think.get.vip}/click/4">日点击</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="div">
+<div class="jingpin-list">
+	<volist name="list" id="vo">
+		<div class="jingpin-list-item">
+			<a href="/books/{$vo.book_id}.html"><div class="jingpin-list-item-title"><img src="/Public/Wap/images/vip.png" class="jingping-vip-icon"/>{$vo.book_name}</div></a>
+			<div class="jingpin-list-item-newst"><a href="/chapter/{$vo.book_id}/{$vo.num}">最新：{$vo.title}（<?php echo date('Y-m-d',strtotime($vo['time']));?>）</a></div>
+			<div class="jingpin-list-item-authoer">作者：{$vo.author_name}</div>
+		</div>
+	</volist>
+</div>
+</div>
+<if condition="$foo|count($list) gt 9">
+{$page}
+</if>
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<script>
+    $(".categlries-name").on("click", function(){
+        var _parent = $(this).parent();
+        $.each(_parent.children(),function(_index, _item){
+            $(_item).removeClass("activite");
+        });
+        $(this).addClass("activite");
+    });
+</script>
+</body>
+</html>

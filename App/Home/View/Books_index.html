@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>{$books.book_name}_{$books.author_name}-{:C('WebName')}</title>
+    <link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+    <link href="__PUBLIC__/Wap/css/reset.css" type="text/css" rel="stylesheet" />
+    <link href="__PUBLIC__/Wap/css/detail.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+
+    <script type="text/javascript">
+        //使用ajax排序并局部刷新
+
+        $(function () {
+
+            $("#daoxu").click(function(){
+                $.ajax({
+                    url: "/Home/Paixu/paixu.html",
+                    type: "post",
+                    data: 'bookid=' + $("#bookid").val()+'&paixu=desc',
+                    timeout:1000,
+                    success: function (data) {
+
+                        $("#div").html(data);
+
+                    }
+                });
+            });
+        });
+
+
+        $(function () {
+
+            $("#zhengxu").click(function(){
+                $.ajax({
+                    url: "/Home/Paixu/paixu.html",
+                    type: "post",
+                    data: 'bookid=' + $("#bookid").val()+'&paixu=asc',
+                    timeout:1000,
+                    success: function (data) {
+
+                        $("#div").html(data);
+
+                    }
+                });
+            });
+        });
+
+
+
+    </script>
+
+    <script type="text/javascript">
+
+        //用ajax刷新评论
+        $(function () {
+            var page=2;
+            $("#message-ajax").click(function(){
+
+                $.ajax({
+                    url: "/Home/Message/message.html",
+                    type: "post",
+                    data: 'bookid=' + $("#messageid").val()+'&page='+page,
+                    success: function (data) {
+
+                        if (data == 1) {
+                            $("#message-ajax").remove();
+                            $("#zuijia").append("<a class=\"load-more-button\">没有内容了.</a>");
+                        } else {
+                            $("#zuijia").append(data);
+                            page++;
+                        }
+                    }
+                });
+            });
+        });
+
+        //用ajax刷新评论回复
+        var page=2;
+        function replayed(id) {
+
+            $.ajax({
+                url: "/Home/Message/more.html",
+                type: "post",
+                data: 'bookid=' + $("#replayid").val()+'&zid='+id+'&page='+page,
+                success: function (data) {
+
+                    if (data == 1) {
+                        $("#replay-ajax").remove();
+                        $("#huifu").append("<a href=\"javascript:;\" class=\"load-more-button\">没有内容了.</a>");
+                    } else {
+                        $("#huifu").append(data);
+                        page++;
+                    }
+                }
+            });
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+        //用ajax刷新发表评论
+        function comment() {
+            if ($.cookie("user_id") != null) {
+
+                $.ajax({
+                    url: "/Home/Message/publish.html",
+                    type: "post",
+                    data: 'title=' + $("#title").val() + '&content=' + $("#content").val() + '&bookid=' + $("#bookid").val(),
+                    timeout: 1000,
+                    success: function (data) {
+
+                        if (data == "标题不可以为空") {
+                            alert(data);
+
+                        } else if (data == "内容不可以为空") {
+                            alert(data);
+
+                        } else {
+                            $("#message-id").html(parseInt($("#message-id").html()) + 1);
+                            $("#title1").html("<input type=\"text\" placeholder=\"请输入标题\" class=\"replay-title\" id=\"title\" value=\"\"/>");
+                            $("#content1").html("<textarea class=\"reply-textarea\" placeholder=\"请输入内容\" id=\"content\" value=\"\"></textarea>");
+
+                            $("#zuijia").html(data);
+                        }
+                    }
+
+
+                });
+            }else {
+
+                alert("请先登录");
+            }
+        }
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        function fenye() {
+            $.ajax({
+                url: "/Home/Page/page",
+                type: "post",
+                data: 'current=' + $("#current").val()+ '&bookid='+$("#bookid").val()+'&page=next'+ '&paixu='+$.cookie("paixu"),
+                timeout:1000,
+                success: function (data) {
+
+
+                    $("#div-page").html(data);
+
+                }
+            });
+        }
+
+
+        function fenyee() {
+            $.ajax({
+                url: "/Home/Page/page",
+                type: "post",
+                data: 'current=' + $("#current").val()+ '&bookid='+$("#bookid").val()+'&page=pre'+ '&paixu='+$.cookie("paixu"),
+                timeout:1000,
+                success: function (data) {
+
+
+                    $("#div-page").html(data);
+
+                }
+            });
+        }
+
+        function jump() {
+            $.ajax({
+                url: "/Home/Page/page",
+                type: "post",
+                data: 'current=' + $("#jump").val()+ '&bookid='+$("#bookid").val()+'&page=jump'+ '&paixu='+$.cookie("paixu"),
+                timeout:1000,
+                success: function (data) {
+
+
+                    $("#div-page").html(data);
+
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function shou(is) {
+            if (is == 1) {
+                if ($.cookie("user_id") != null) {
+                    $.ajax({
+                        url: "/Home/Collection/index",
+                        type: "post",
+                        data: 'bookid=' + $("#bookid").val(),
+                        success: function (data) {
+
+                            if (data == 1) {
+                                $("#genduid").html(parseInt($("#genduid").html()) + 1);
+                                $("#shoucang").html("<div class=\"fui-flex-cell\"><a class=\"nov-button\" href=\"javascript:shou(2);\">取消收藏</a></div>");
+                            } else {
+                                $("#errors").html("该书您已收藏");
+                            }
+                        }
+                    });
+                } else {
+                    alert("请先登录");
+                }
+
+            } else if (is == 2) {
+                if ($.cookie("user_id") != null) {
+                    $.ajax({
+                        url: "/Home/Collection/dell",
+                        type: "post",
+                        data: 'bookid=' + $("#bookid").val(),
+                        success: function (data) {
+                            if (data == 1) {
+                                $("#genduid").html(parseInt($("#genduid").html()) - 1);
+                                $("#shoucang").html("<div class=\"fui-flex-cell\"><a href=\"javascript:shou(1);\" class=\" nov-button\">点击收藏</a></div>");
+                            } else {
+                                $("#errors").html("系统错误");
+                            }
+                        }
+                    });
+                } else {
+                    alert("请先登录");
+                }
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function xuanhua() {
+            if ($.cookie("user_id") != null) {
+                $.ajax({
+                    url: "/Home/Vote/vote.html",
+                    type: "post",
+                    data: 'bookid=' + $("#bookid").val(),
+                    success: function (data) {
+                        if (data != 999) {
+                            $("#vote span").html(parseInt($("#vote span").html()) + 1);
+                            alert("鲜花赠送成功,剩余" + data + "票。");
+                        } else {
+                            alert("鲜花不足");
+                        }
+                    }
+                });
+            } else {
+                alert("请先登录");
+            }
+        }
+
+        function zhanshi() {
+            if ($.cookie("user_id") != null) {
+                $.ajax({
+                    url: "/Home/Vote/vipvote.html",
+                    type: "post",
+                    data: 'bookid=' + $("#bookid").val(),
+                    success: function (data) {
+                        if (data != 999) {
+                            $("#votevip span").html(parseInt($("#votevip span").html()) + 1);
+                            alert("钻石赠送成功,剩余" + data + "票。");
+                        } else {
+                            alert("钻石不足充值赠送");
+                        }
+                    }
+                });
+            } else {
+                alert("请先登录");
+            }
+        }
+
+
+
+    </script>
+
+    <style type="text/css">
+        .reply-btn{
+            width:94%;
+            display: block;
+            margin:10px auto;
+            background-color:#e95e85;
+            color:#fff;
+            text-align: center;
+            line-height: 36px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+    </style>
+
+</head>
+<body style="background-color: #f0f0f0;">
+<!--公共头部-->
+<include file="Index:top"/>
+<!--公共头部结束-->
+<div class="read-detail">
+    <div class="page-main">
+        <div class="novel-detail">
+            <div class="fui-flex novel-detail-desc">
+                <div class="fui-flex-cell fui-flex-fixed">
+                    <div class="image-box novel-desc-img">
+                        <img src="/Upload/Book/zhong/{$books.upload_img}">
+                    </div>
+                </div>
+                <div class="fui-flex-cell font-color-999999">
+                    <h2 class="novel-title">{$books.book_name}</h2>
+                    <div class="novel-intro">
+                        <ul>
+                            <li><span>作者:</span><a href="">{$books.author_name}</a></li>
+                            <li><span>字数:</span>{$books.words}字</li>
+                            <li><span>点击:</span>{$books[bookinfo][click_total]}次</li>
+                            <li><span>收藏:</span><a id='genduid'>{$books[bookinfo][collection_total]}人</a></li>
+                        </ul>
+                        <div class="month-ticket">
+                            <if condition="$books[state]==2"><div class="text">已完本</div><else/><div class="text">连载中</div></if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 10px;"></div>
+            <div class="fui-flex novel-operate">
+
+                <empty  name="content_info">
+                    <div class="fui-flex-cell"><a href="/chapter/{$books.book_id}/1.html" class=" nov-button nov-button-primary">开始阅读</a></div>
+                    <else />
+                    <div class="fui-flex-cell"><a href="/chapter/{$books.book_id}/{$content_info.num}.html" class=" nov-button nov-button-primary">上次阅读</a></div>
+
+                </empty>
+
+                <div  class="fui-flex-cell" id="shoucang">
+                    <if condition="$collection==1">
+                        <div class="fui-flex-cell"><a href="javascript:shou(1);" class=" nov-button">点击收藏</a></div>
+                        <else/>
+                        <div class="fui-flex-cell"><a class="nov-button" href="javascript:shou(2);">取消收藏</a></div>
+                    </if>
+                </div>
+
+            </div>
+
+
+            <div class="fui-flex novel-operate margin-t0">
+                <div class="fui-flex-cell"><a href="javascript:xuanhua();" id="vote"><div class=" nov-button text-indent-24"><img src="__PUBLIC__/Wap/images/flower.png" class="icon-in-nov-button"/> <span>{$books.bookinfo.vote_total}</span></div></a></div>
+                <div class="fui-flex-cell"><a href="javascript:zhanshi();" id="votevip"><div  class=" nov-button text-indent-24"><img src="__PUBLIC__/Wap/images/diamond.png" class="icon-in-nov-button diamond"/><span>{$books.bookinfo.vipvote_total}</span></div></a></div>
+            </div>
+
+            <div class="novel-detail-content read-detail-content">
+                <div class="fui-flex novel-read-status">
+                    <div class="fui-flex-cell fui-flex-tab-item active">
+                        <div class="cate-text">简介</div>
+                    </div>
+                    <div class="fui-flex-cell fui-flex-tab-item">
+                        <div class="cate-text">目录</div>
+                    </div>
+                    <div class="fui-flex-cell fui-flex-tab-item">
+                        <div class="cate-text">评论</div>
+                    </div>
+                </div>
+                <div class="tab-item">
+                    <div class="detail-text read-detail-text">
+
+                        {$books.book_brief}
+                    </div>
+                    <div class="novel-mod novel-mod-focus">
+                        <div class="mod-title">
+                            <h3 class="h3">捧场总数({$books.count}) </h3>
+                        </div>
+                        <div class="mod-content mod-content-0223">
+                            <div class="user-list clearfix diplay-flex">
+                                <a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>1))}" class="user-list-item flex-1">
+                                   <span class="img">
+                                            <img src="__PUBLIC__/Wap/images/pc-icon.png">
+                                    </span>
+                                    <span class="number font-color-e783ae">鲜花</span>
+                                </a>
+                                <a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>2))}" class="user-list-item flex-1">
+                                        <span class="img">
+                                            <img src="__PUBLIC__/Wap//images/pc-icon2.png">
+                                        </span>
+                                    <span class="number font-color-e783ae">气球</span>
+                                </a>
+                                <a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>3))}" class="user-list-item flex-1">
+                                        <span class="img">
+                                            <img src="__PUBLIC__/Wap/images/pc-icon3.png">
+                                        </span>
+                                    <span class="number font-color-e783ae">红酒</span>
+                                </a>
+                                <a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>4))}" class="user-list-item flex-1">
+                                        <span class="img">
+                                            <img src="__PUBLIC__/Wap/images/pc-icon4.png">
+                                        </span>
+                                    <span class="number font-color-e783ae">小熊</span>
+                                </a>
+                                <a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>5))}" class="user-list-item flex-1">
+                                        <span class="img">
+                                            <img src="__PUBLIC__/Wap/images/pc-icon5.png">
+                                        </span>
+                                    <span class="number font-color-e783ae">礼盒</span>
+                                </a>
+                            </div>
+                            <div class="user-msg">
+
+                                <volist name="books.rewardrecord" id="vo">
+                                    <div class="user-msg-item">
+                                        <span class="user-name">{$vo.pen_name}~</span>捧场了 <span class="icon-focus"><img src="/Public/Gift/{$vo.gift}"></span> <span class="focus-number">* {$vo.num}</span>
+                                    </div>
+                                </volist>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="novel-mod margin-t0 novel-mod-directory tab-item hidden">
+                    <div class="mod-content">
+                        <ul>
+
+
+                            <li class="item-chapter">
+                                <a href="/chapter/{$books.book_id}/{$books.newcontnet.num}.html">
+                                    <span class="tag-new">更新</span>{$books.newcontnet.title} </a>
+                                    <span class="fr"><?php echo date('m-d',strtotime($books[newcontnet]['time']));?></span>
+
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                    <div class="tabs margin-t10">
+
+
+                        <a href="javascript:;"><div class="activite" id="daoxu">倒序</div></a>
+                        <a href="javascript:;"><div  id="zhengxu">正序</div></a>
+                        <input type="hidden" id="bookid" value="{$books.book_id}"/>
+
+
+                    </div>
+
+
+                    <div id="div-page">
+                        <div id="div">
+                            <ul class="content">
+
+                                <volist name="chapterlist" id="chapterlist">
+                                    <li><if condition="$chapterlist[the_price]!=0"><img src="/Public/Wap/images/vip.png"/></if><a href="/chapter/{$bookinfo.book_id}/{$chapterlist.num}">{$chapterlist.title}</a></li>
+                                </volist>
+                            </ul>
+
+                        <div class="pager">
+                            <if condition="$current==1">
+                                <a class="pager-item" href="javascript:fenye();">下一页</a>
+                                <else />
+                                <a class="pager-item" href="javascript:fenyee();">上一页</a>
+                                <a class="pager-item" href="javascript:fenye();">下一页</a>
+                            </if>
+                            <div class="pager-item">到</div>
+                            <div class="pager-item page-num-input"><input type="text" id="jump" value=""/></div>
+                            <div class="pager-item">页</div>
+                            <a href="javascript:jump();"><div class="pager-item goto">跳转</div></a>
+                            <div class="pager-item">{$current}/{$totalPage}</div>
+                            <input type="hidden" id="current" value="{$current}">
+
+                        </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="margin-t10 tab-item hidden">
+            <div class="reply-wrap">
+
+
+                <div class="reply-main">
+                    <div class="reply-content read-detail">
+
+                        <div id="title1"> <input type="text" placeholder="请输入标题" class="replay-title" id="title" name="title" value=""/></div>
+
+                        <div id="content1"> <textarea class="reply-textarea" placeholder="请输入内容" id="content" name="content" value=""></textarea></div>
+                    </div>
+
+                    <a href="javascript:comment();" class="reply-btn" style="width: 100%;">提交</a>
+
+                </div>
+
+
+            </div>
+
+            <div class="novel-mod novel-mod-comment">
+                <div class="mod-title">
+                    <h3 class="h3">书评圈 ( <span class="number" id="message-id">{$count}</span> ) </h3>
+                </div>
+
+                <div id="zuijia">
+                    <volist name="showArr" id="vo">
+                        <div class="mod-content">
+                            <div class="item-comment">
+                                <div class="item-comment-title">
+                                    <if condition="$vo[top]==1"><span class="tag-stick">[置顶]</span></if>
+                                    <if condition="$vo[good]==1"><span class="tag-good">[精华]</span></if>
+                                    <span>{$vo.title}</span>
+                                </div>
+                                <div class="item-comment-content">
+                                    {$vo.content}
+                                </div>
+                                <div class="item-comment-bottom">
+                                    <span class="comment-user-name">{$vo.pen_name}</span>
+                                    <span class="comment-times">{$vo.time}</span>
+                                    <a href="/Home/Message/index/id/{$vo.f_id}.html"><span class="button-comment-reply"><i class="icon-comment"></i>回复</span></a>
+                                </div>
+
+
+                                <div class="comment-reply">
+
+
+                                    <ul >
+
+                                            <volist name="vo[zmesg]" id="vv">
+                                                <li class="item-reply">
+                                    <span class="reply-user-name">
+                                       {$vv.pen_name}
+                                    </span>
+                                                    <span class="reply-txt">
+
+                                       {$vv.content}
+                                    </span>
+                                                </li>
+
+                                            </volist>
+
+                                        <!--
+                                            <if condition="$foo|count($vo[zmesg]) gt 2">
+
+                                                <div id="huifu"> </div>
+                                                <li><a href="javascript:replayed({$vo.f_id});"> <div class="load-more-button" id="replay-ajax">查看更多回复</div></a></li>
+                                            </if>
+                                            -->
+
+                                    </ul>
+
+
+                                        <input type="hidden" id="replayid" value="{$books.book_id}"/>
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </volist>
+                </div>
+
+                <a href="javascript:;" class="load-more-button" id="message-ajax">更多评论...</a>
+                <input type="hidden" id="messageid" value="{$books.book_id}" >
+
+            </div>
+
+        </div>
+
+        <div class="novel-mod novel-mod-recommend">
+            <div class="mod-title">
+                <h3 class="h3">精彩推荐</h3>
+            </div>
+            <div class="ranking-listtop ranking-listtop-0223">
+                <ul class="diplay-flex">
+
+                    <volist name="books.newbook" id="vo">
+                        <li>
+                            <p><a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a></p>
+                            <p class="margin-t10">{$vo.book_name}</p>
+                        </li>
+                    </volist>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--公共底部-->
+    <include file="Index:bot"/>
+    <!--公共底部 结束-->
+</div>
+
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<script src="__PUBLIC__/Wap/js/read.js"></script>
+</body>
+
+</html>

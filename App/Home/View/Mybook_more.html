@@ -1,0 +1,15 @@
+<volist name="books" id="vo">
+    <div class="person-read clearfix">
+        <a href="javascript:;">
+            <div class="person-readimg fl">
+                <img src="/Upload/Book/zhong/{$vo.upload_img}"/>
+            </div>
+            <div class="person-rmessage person-rmessage-goon fl">
+                <a href="/books/{$vo.book_id}"><p>{$vo.book_name}</p></a>
+                <a href="/chapter/{$vo.book_id}/{$vo.num}"><p>最新更新:{$vo.title}</p></a>
+                <p><a class="goread-btn" href="/chapter/{$vo.book_id}/{$vo.chapter_id}">继续阅读</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="goread-btn" href="/Home/Mybook/del/bookid/{$vo.book_id}">取消追书</a></p>
+            </div>
+            <div class="person-rtime person-rtime-goon fl"><?php echo date('m-d H:i:s',strtotime($vo['time']));?></div>
+        </a>
+    </div>
+</volist>

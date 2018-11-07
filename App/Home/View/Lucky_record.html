@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>抽奖记录</title>
+<link rel="shortcut icon" href="Favicon.ico" type="image/x-icon" />
+    <link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+    <link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+    <link href="__PUBLIC__/Wap/css/main.css" rel="stylesheet">
+    <link href="__PUBLIC__/Wap/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+</head>
+<body>
+<include file="Index:top" />
+<div id="box">
+<div class="main">
+    <div class="main-top">
+      <div><a href="/Home/Lucky/index.html" style="float: right; padding-right: 10px;color: #E562A3">马上抽奖</a>领奖必读！</div>
+    </div>
+      <div class="xinxi">
+          <span>1.抽到一等奖至四等奖的朋友，请及时与客服联系，而抽到五等奖至十二等奖的朋友请耐心等待，系统将自动发放至后台。</span><br/>
+        <span>2. 获取话费、Iphone、亚马逊阅读器的获奖用户，请获奖后立即完善用户资料，网站将根据后台的用资料中的QQ和手机号及通讯地址，进行奖品的发放。</span><br/>
+          <span>3 其他奖品领取问题，请联系客服 QQ：3404797373。</span><br/>
+      </div>
+  </div>     
+  <div class="main">
+    <div class="main-top">
+      <div>抽奖记录</div>
+    </div>
+    <ul class="list">
+     <volist name="jilu" id="jilu">
+      <li>
+          <p class="name"> <{$jilu.prize}> (<if condition="$jilu[status]==1"><font color=blue>已领</font><else /><font color=red>未领</font></if>)</p>
+        <p class="jiage"> 中奖时间：<{$jilu.luckytime}> </p>
+      </li>
+      </volist>
+    </ul>
+  </div>
+  {$page}
+</div>
+<include file="Index:bot" />
+</body>
+</html>

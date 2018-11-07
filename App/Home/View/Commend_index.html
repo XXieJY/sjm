@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>{$content[title]}_{$books.book_name}-{:C('webname')}</title>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+	<link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+
+
+        $(document).ready(function(){
+
+            $("#menu").click(function(){
+                $("#all-menu").slideToggle("500");
+            });
+
+        });
+
+
+	</script>
+
+	<script type="text/javascript">
+        $(function () {
+            var booksname="{$books.book_name}";
+            var art_title = "{$content[title]}";
+            var art_url = '/chapter/{$books.book_id}/{$content['num']}.html';
+            $.cookie("history", "{title:\""+booksname +":"+ art_title + "\""+",url:\"" + art_url + "\"}", {expires: 7, path: '/'});
+        });
+
+	</script>
+
+
+</head>
+<body class="detail-body">
+<!--公共头部-->
+
+
+<!--公共头部结束-->
+<div class="section">
+	{$content.title}
+</div>
+<div class="section-date">
+	{$content.time}&nbsp;&nbsp;发布&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$content.number}字
+
+</div>
+<div class="wrap-content" id="section-content">
+	<p>{$content[content]}</p>
+</div>
+
+<div class="wrap-content diplay-flex">
+	<a href="/commend/{$books.book_id}/{$chapterinfo['nextid']}.html" class="prev-section flex-1">
+		下一章
+	</a>
+	<a id="menu" class="next-section">
+		菜单
+	</a>
+</div>
+
+<input name="bookid" id="bookid" type="hidden" value="{$content.book_id}" />
+<input name="num" id="num" type="hidden" value="{$chapterinfo['preid']}" />
+
+<div id="all-menu">
+<!--
+<div class="wrap-content diplay-flex margin-b5">
+
+	<a href="/commend/{$books.book_id}/{$chapterinfo['preid']}" class="bottom-nav flex-1">
+		上一章
+	</a>
+	<a href="/books/{$books.book_id}" class="bottom-nav flex-1">
+		返回作品
+	</a>
+	<a href="/commend/{$books.book_id}/{$chapterinfo['nextid']}" class="bottom-nav flex-1">
+		下一章
+	</a>
+	<a href="/Categories/{$books.book_id}" class="bottom-nav flex-1">
+		返回目录
+	</a>
+</div>
+<div class="wrap-content diplay-flex margin-t5">
+	<a href="/Home/Center/index.html" class="bottom-nav flex-1">
+		个人中心
+	</a>
+	<a href="/books/{$books.book_id}" class="bottom-nav flex-1">
+		评论
+	</a>
+	<a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>1))}" class="bottom-nav flex-1">
+		打赏
+	</a>
+	<a href="/Home/Mybook/index" class="bottom-nav flex-1">
+		书架
+	</a>
+</div>
+-->
+<div class="wrap-content diplay-flex line-1">
+</div>
+
+<div class="wrap-content">
+	<div class="bottom-fun bottom-fun-left fl diplay-flex">
+		<div class="flex-1 bottom-fun-item"  data-event-type="bigger">
+			A+
+		</div>
+		<div class="flex-1 bottom-fun-item"  data-event-type="smaller">
+			A-
+		</div>
+	</div>
+	<div class="bottom-fun bottom-fun-right fl diplay-flex">
+		<div class="flex-1 bottom-fun-item"  data-event-type="default">
+			默认
+		</div>
+		<div class="flex-1 bottom-fun-item"  data-event-type="light">
+			夜间
+		</div>
+		<div class="flex-1 bottom-fun-item" data-event-type="soft">
+			柔和
+		</div>
+	</div>
+</div>
+
+
+
+
+<!--公共底部-->
+
+
+<!--公共底部 结束-->
+
+</div>
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<script>
+	var _fontSize = 0.875;
+	$(".bottom-fun-item").on("click", function(){
+		var _eventType = $(this).attr("data-event-type");
+		var _loginWay = $(".wrap-logo-way");
+		var _detailBody = $(".detail-body");
+		var _section = $(".section");
+		switch (_eventType){
+			case ("light"):
+				$(_detailBody).removeClass("soft").addClass("night");
+				break;
+			case ("default"):
+			$(_detailBody).removeClass("night soft");
+			break;
+			case ("soft"):
+				$(_detailBody).removeClass("night").addClass("soft");
+				break;
+			case ("bigger"):
+				if(_fontSize < 1.8){
+					_fontSize += 0.1;
+				}
+				$("#section-content").css("font-size",_fontSize+"em");
+				break;
+			case ("smaller"):
+				if(_fontSize > 0.875){
+					_fontSize -= 0.1;
+				}
+				$("#section-content").css("font-size",_fontSize+"em");
+				break;
+		}
+	});
+</script>
+</body>
+</html>

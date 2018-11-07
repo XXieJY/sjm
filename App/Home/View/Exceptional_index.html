@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>{$books[book_name]}-捧场</title>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+	<link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		function peng(id) {
+            $.ajax({
+                url: "/Home/Exceptional/chuli",
+                type: "post",
+                data: 'bookid='+id+ '&cpi='+$("#cpi").val()+ '&num='+$("#pc-amount").val()+ '&message='+$("#pc-hc").val(),
+                success: function (data) {
+
+                    if(data==1){
+
+                        window.location.href= '/books/'+id;
+					}
+
+					if(data==2){
+
+                        alert("亲，阅读币不足请充值！");
+                        window.location.href="/Home/Pay/index.html";
+					}
+					if(data=="系统错误"){
+
+					    alert(data);
+
+                        window.location.href="/Home/Exceptional/index.html";
+					}
+                }
+            });
+        }
+		
+	</script>
+</head>
+<body class="pengchang-body">
+<!--公共头部-->
+
+<include file="Index:top"/>
+<!--公共头部结束-->
+<div class="book-name">给《{$books[book_name]}》捧场</div>
+<div class="wrap-pc">
+
+	<ul class="pc-categories">
+
+
+		<li>
+			<a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>1))}"><div class="pc-icon">
+
+					<img src="__PUBLIC__/Wap/images/pc-icon.png"/>
+
+			</div></a>
+			<p class="pc-name">鲜花</p>
+			<p class="pc-price">100阅读币/个</p>
+		</li>
+
+		<li>
+			<a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>2))}"><div class="pc-icon"><img src="__PUBLIC__/Gift/hongjiu.png"></div></a>
+			<p class="pc-name">气球</p>
+			<p class="pc-price">200阅读币/个</p>
+		</li>
+
+		<li>
+			<a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>3))}"><div class="pc-icon"><img src="__PUBLIC__/Gift/dangao.png"></div></a>
+			<p class="pc-name">红酒</p>
+			<p class="pc-price">500阅读币/个</p>
+		</li>
+
+		<li>
+			<a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>4))}"><div class="pc-icon"><img src="__PUBLIC__/Gift/qiche.png"></div></a>
+			<p class="pc-name">小熊</p>
+			<p class="pc-price">1500阅读币/个</p>
+		</li>
+
+		<li>
+			<a href="{:U('Exceptional/index',array('book'=>$books[book_id],'cpi'=>5))}"><div class="pc-icon"><img src="__PUBLIC__/Gift/feiji.png"></div></a>
+			<p class="pc-name">礼盒</p>
+			<p class="pc-price">5000阅读币/个</p>
+		</li>
+
+
+
+
+	</ul>
+
+</div>
+
+
+<div class="pc-content">
+    <div>
+		<label for="pc-amount">数量：</label>
+		<input id="pc-amount" type="text" name="num" value="1"/>
+
+		<input type="hidden" id="cpi" value="{$cpi}">
+
+	</div>
+	<div class="wrap-pc-hc">
+		<table width="100%">
+			<tr>
+				<td valign="top" width="50">
+					<label for="pc-hc">贺词：</label>
+				</td>
+				<td>
+					<textarea id="pc-hc" name="message"></textarea>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+	<a href="javascript:peng({$books.book_id});" class="reply-btn" style="width: 94%;">捧场</a>
+<!--弹出框-->
+<!--
+<div class="reply-shade" style="display:block"></div>
+<div class="reply-scontent" style="display:block">
+	<p>提示</p>
+	<p>余额不足请充值</p>
+	<a href="/Home/Pay/index" class="js-affirm">确定</a>
+</div>
+-->
+<!--弹出框 结束-->
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<script src="__PUBLIC__/Wap/js/read.js"></script>
+</body>
+</html>

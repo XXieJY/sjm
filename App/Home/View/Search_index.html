@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>搜索_{:C('WebName')}</title>
+    <link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+    <link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+    <link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+    <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+    <script type="text/javascript">
+       function pages() {
+           $.ajax({
+               url: "/Home/Search/page",
+               type: "post",
+               data: 'current=' + $("#current").val()+ '&keyword='+$("#keyword").val()+'&page=next',
+               timeout:1000,
+               success: function (data) {
+
+                   $("#div").html(data);
+
+               }
+           });
+       }
+
+
+       function pagess() {
+           $.ajax({
+               url: "/Home/Search/page",
+               type: "post",
+               data: 'current=' + $("#current").val()+ '&keyword='+$("#keyword").val()+'&page=pre',
+               timeout:1000,
+               success: function (data) {
+
+                   $("#div").html(data);
+
+               }
+           });
+       }
+
+
+       function jump() {
+           $.ajax({
+               url: "/Home/Search/page",
+               type: "post",
+               data: 'current=' + $("#jump").val()+ '&keyword='+$("#keyword").val()+'&page=jump',
+               timeout:1000,
+               success: function (data) {
+
+                   $("#div").html(data);
+
+               }
+           });
+       }
+
+    </script>
+
+
+</head>
+<body>
+<!--公共头部-->
+
+<include file="Index:top"/>
+<!--公共头部结束-->
+<form action="/Home/Search/search/" method="post">
+<div class="search-box">
+    <input type="text" id="searchInput" name="keyword" placeholder="输入关键字" value=""/>
+
+    <input type="submit" id="searchBtn" value="搜索">
+</div>
+<div class="search-by">
+    <div class="cus-radio activite"></div>
+    找书
+    <div class="cus-radio"></div>
+    找作者
+    <input type="radio" name="searchby" value="1" checked="checked"/>
+    <input type="radio" name="searchby" value="2"/>
+</div>
+</form>
+<div id="div">
+<div class="wrap-content">
+    <div class="wrap-content-title">
+        <div>共有{$count}条记录</div>
+    </div>
+
+    <ul class="result-set">
+
+        <volist name="list" id="vo">
+            <li class="result-set-item">
+                <div class="result-set-item-top">
+                    <a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}" class="searchset-img"/></a>
+                    <a href="/books/{$vo.book_id}.html"> <dl>
+                        <dd class="result-set-title">{$vo.book_name}</dd>
+                        <dd class="result-set-auther">作者：<span>{$vo.author_name}</span></dd>
+                        <dd class="result-set-date">最后更新时间：{$vo.time}</dd>
+                    </dl></a>
+                </div>
+                <div class="result-set-item-content">
+                    {$vo.book_brief}...
+                </div>
+            </li>
+        </volist>
+
+    </ul>
+
+
+</div>
+
+
+<div class="pager">
+
+    <if condition="$count gt 10">
+        <if condition="$current==1">
+            <a class="pager-item" href="javascript:pages();">下一页</a>
+            <else />
+            <a class="pager-item" href="javascript:pagess();">上一页</a>
+            <a class="pager-item" href="javascript:pages();">下一页</a>
+        </if>
+        <div class="pager-item">到</div>
+        <div class="pager-item page-num-input"><input type="text" id="jump" value=""/></div>
+        <div class="pager-item">页</div>
+        <a href="javascript:jump();"><div class="pager-item goto" style="margin-left: 2px;">跳转</div></a>
+        <div class="pager-item">{$current}/{$totalPage}</div>
+        <input type="hidden" id="current" value="{$current}">
+        <input type="hidden" id="keyword" value="{$keyword}">
+    </if>
+
+</div>
+</div>
+
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<script>
+    $(".cus-radio").on("click", function(){
+        var _i = $(".cus-radio.activite").index($(".cus-radio"));
+        var _index = $(this).index($(".cus-radio"));
+        $(".cus-radio").eq(_i).removeClass("activite");
+        $("input[type='radio']").eq(_i).prop("checked",false);
+        $(".cus-radio").eq(_index).addClass("activite");
+        $("input[type='radio']").eq(_index).prop("checked",true);
+    });
+</script>
+</body>
+</html>

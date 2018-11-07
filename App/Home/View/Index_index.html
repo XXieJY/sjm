@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>{:C('WebName')}_原创小说网</title>
+	<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+	<link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+</head>
+<body class="index-body">
+
+<include file="Index:top"/>
+<div class="search-box">
+	<form action="/Home/Search/index/current/1" method="post">
+		<input type="text" id="searchInput" name="keyword" placeholder="输入关键字"/>
+		<input type="submit" id="searchBtn" value="搜索"/>
+	</form>
+</div>
+<ul class="wrap-keywords">
+	<volist name="sousuo" id="vo">
+	<li><a href="/books/{$vo.book_id}.html">{$vo.book_name}</a></li>
+	</volist>
+</ul>
+<div class="banner diplay-flex">
+
+	<volist name="slide" id="vo">
+	<div class="banner-item flex-1">
+		<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}" alt="{$vo.book_name}" class=""></a>
+	</div>
+	</volist>
+</div>
+<div class="wrap-content">
+	<div class="wrap-content-title">
+		<div>热门推荐</div>
+	</div>
+	<ul class="result-set border-less">
+		<li class="result-set-item">
+			<div class="result-set-item-top">
+				<a href="/books/{$hots[0].book_id}.html"><img src="/Upload/Book/zhong/{$hots[0].upload_img}" class="searchset-img"/>
+				<dl>
+					<dd class="result-set-title">{$hots[0].book_name}</dd>
+					<dd class="result-set-auther">
+						{$hots[0]["book_brief"]}
+					</dd>
+				</dl>
+				</a>
+			</div>
+		</li>
+
+		<volist name="hots" id="vo" offset="1">
+		<li class="result-set-item">
+			<span class="categories-label">[{$vo.book_type}]</span><a href="/books/{$vo.book_id}.html"><span class="tj-book-name">{$vo.book_name}</span></a>
+		</li>
+		</volist>
+	</ul>
+</div>
+<div class="banner border-radius-5">
+	<a href="/books/29.html"><img src="/Upload/Ban/{$ban[0][pic]}"/></a>
+</div>
+<div class="wrap-content" style="margin-top:15px;">
+	<div class="wrap-content-title">
+		<div>潜力新作</div>
+	</div>
+	<ul class="like-list">
+
+	<volist name="xinzuo" id="vo">
+		<li>
+			<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a>
+			<p>
+				{$vo.book_name}
+			</p>
+		</li>
+	</volist>
+
+	</ul>
+</div>
+
+<div class="banner border-radius-5">
+	<a href="/books/791.html"><img src="/Upload/Ban/{$ban[1][pic]}"/></a>
+</div>
+
+<div class="wrap-content" style="margin-top:20px;">
+	<div class="wrap-content-title">
+		<div>热销专区</div>
+	</div>
+	<ul class="result-set border-less">
+		<li class="result-set-item">
+			<div class="result-set-item-top">
+				<a href="/books/{$rexiao[0].book_id}.html"><img src="/Upload/Book/zhong/{$rexiao[0].upload_img}" class="searchset-img"/>
+				<dl>
+					<dd class="result-set-title">{$rexiao[0].book_name}</dd>
+					<dd class="result-set-auther">
+						{$rexiao[0].book_brief}
+					</dd>
+				</dl>
+				</a>
+			</div>
+		</li>
+
+      <volist name="rexiao" id="vo" offset="1">
+		<li class="result-set-item">
+			<span class="categories-label">[{$vo.book_type}]</span><a href="/books/{$vo.book_id}.html"><span class="tj-book-name">{$vo.book_name}</span></a>
+		</li>
+	  </volist>
+
+	</ul>
+</div>
+<div class="wrap-content">
+	<div class="wrap-content-title">
+		<div>精品推荐</div>
+	</div>
+	<ul class="result-set border-less">
+		<li class="result-set-item">
+			<div class="result-set-item-top">
+				<a href="/books/{$jingpin[0].book_id}.html"><img src="/Upload/Book/zhong/{$jingpin[0].upload_img}" class="searchset-img"/>
+				<dl>
+					<dd class="result-set-title">{$jingpin[0].book_name}</dd>
+					<dd class="result-set-auther">
+						{$jingpin[0].book_brief}
+					</dd>
+				</dl>
+				</a>
+			</div>
+		</li>
+
+	<volist name="jingpin" id="vo" offset="1">
+		<li class="result-set-item">
+			<span class="categories-label">[{$vo.book_type}]</span><a href="/books/{$vo.book_id}.html"><span class="tj-book-name">{$vo.book_name}</span></a>
+		</li>
+	</volist>
+
+	</ul>
+</div>
+
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>网站注册-{:C('webname')}</title>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+	<link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		function checkForm() {
+         if(myform.username.value==""){
+             alert("账号不可为空");
+             myform.username.focus();
+             return false;
+		 }
+            if(myform.pen_name.value==""){
+                alert("昵称不可为空");
+                myform.pen_name.focus();
+                return false;
+            }
+            if(myform.password.value==""){
+                alert("密码不可为空");
+                myform.password.focus();
+                return false;
+            }
+
+        }
+
+	</script>
+
+
+</head>
+<body class="login-body">
+<include file="Index:top"/>
+<div class="wrap-main">
+	<form action="/Home/Register/register" method="post" name="myform" onsubmit="return checkForm();">
+	<div class="main">
+		<div class="main-top">
+			<div>注册</div>
+		</div>
+		<div class="wrap-login-form wrap-find-pwd wrap-register">
+			<div>
+				<label>账号</label>
+				<input type="text" name="username" placeholder="手机号/用户名" value=""/>
+			</div>
+
+			<div>
+				<label>昵称</label>
+				<input type="text" name="pen_name" placeholder="您喜欢的昵称" value=""/>
+			</div>
+
+			<div>
+				<label>密码</label>
+				<input type="password" name="password" value="" />
+
+			</div>
+		</div>
+		<input type="submit" class="login-btn register-sub-btn" value="注册"/>
+	</div>
+	</form>
+	<dl>
+	   <dd>温馨提示：</dd>
+	   <dd>1、如出现异常，请联系客服QQ:3294039340</dd>
+	</dl>
+</div>
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+</body>
+</html>

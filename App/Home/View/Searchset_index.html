@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>搜索_{:C('WebName')}</title>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+	<link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+
+		function search() {
+
+            var searchby = $("input[name='searchby']:checked").val();
+            $.ajax({
+                url: "/Home/Searchset/searched",
+                type: "post",
+                data: 'keyword=' + $("#searchInput").val()+ '&searchby='+searchby,
+                timeout:1000,
+                success: function (data) {
+
+                    $("#input1").html("<input type=\"text\" id=\"searchInput\" name=\"keyword\" placeholder=\"输入关键字\" value=\"\"/>");
+               $("#div").html(data);
+
+                }
+            });
+        }
+
+
+        function pages() {
+            $.ajax({
+                url: "/Home/Search/page",
+                type: "post",
+                data: 'current=' + $("#current").val()+ '&keyword='+$("#keyword").val()+'&page=next',
+                timeout:1000,
+                success: function (data) {
+
+                    $("#div").html(data);
+
+                }
+            });
+        }
+
+
+        function pagess() {
+            $.ajax({
+                url: "/Home/Search/page",
+                type: "post",
+                data: 'current=' + $("#current").val()+ '&keyword='+$("#keyword").val()+'&page=pre',
+                timeout:1000,
+                success: function (data) {
+
+                    $("#div").html(data);
+
+                }
+            });
+        }
+
+
+        function jump() {
+            $.ajax({
+                url: "/Home/Search/page",
+                type: "post",
+                data: 'current=' + $("#jump").val()+ '&keyword='+$("#keyword").val()+'&page=jump',
+                timeout:1000,
+                success: function (data) {
+
+
+                    $("#div").html(data);
+
+                }
+            });
+        }
+
+	</script>
+
+
+
+</head>
+<body class="jingpin-body replylist-body">
+<!--公共头部-->
+<include file="Index:top"/>
+
+<!--公共头部结束-->
+
+<div class="search-box">
+
+		<div id="input1"><input type="text" id="searchInput" name="keyword" placeholder="输入关键字" value=""/></div>
+
+
+			<a href="javascript:search();" id="searchBtn">搜索</a>
+
+</div>
+
+<div class="search-by">
+	<div class="cus-radio activite"></div>
+	找书
+	<div class="cus-radio"></div>
+	找作者
+	<input type="radio" name="searchby" value="1" checked/>
+	<input type="radio" name="searchby" value="2"/>
+</div>
+
+
+
+<div id="div">
+<div class="wrap-content-title">
+	<div>共有0条记录</div>
+</div>
+<div class="hot-book-title">
+	热门书籍
+</div>
+<ul class="hot-list-label">
+	<volist name="hots" id="vo">
+	<a href="/books/{$vo.book_id}.html"><li>{$vo.book_name}</li></a>
+	</volist>
+
+</ul>
+
+<div class="wrap-content">
+	<div class="wrap-content-title">
+		<div>猜你喜欢</div>
+	</div>
+	<ul class="like-list">
+		<volist name="likeArr" id="vo">
+		<li>
+			<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a>
+			<p>
+				{$vo.book_name}
+			</p>
+		</li>
+		</volist>
+	</ul>
+</div>
+</div>
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<script>
+	$(".cus-radio").on("click", function(){
+		var _i = $(".cus-radio.activite").index($(".cus-radio"));
+		var _index = $(this).index($(".cus-radio"));
+		$(".cus-radio").eq(_i).removeClass("activite");
+		$("input[type='radio']").eq(_i).prop("checked",false);
+		$(".cus-radio").eq(_index).addClass("activite");
+		$("input[type='radio']").eq(_index).prop("checked",true);
+	});
+</script>
+</body>
+</html>

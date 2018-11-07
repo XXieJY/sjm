@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>{:C('WebName')}-消费记录</title>
+    <link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+    <script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+    <link href="__PUBLIC__/Wap/css/reset.css" type="text/css" rel="stylesheet" />
+    <link href="__PUBLIC__/Wap/css/read.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+</head>
+<body>
+<!--公共头部-->
+<include file="Index:top"/>
+<!--公共头部结束-->
+
+<!--充值内容区-->
+<div class="rclist-main rclist-mainp">
+    <p class="rclist-title"><span></span>消费记录</p>
+    <ul>
+        <volist name="xiaofei" id="xiaofei">
+            <li>
+                <p class="name"> {$xiaofei.dosomething} </p>
+                <p class="jiage"> 消费：{$xiaofei.money}阅读币 时间：{$xiaofei.date}</p>
+            </li>
+        </volist>
+
+    </ul>
+</div>
+
+
+    {$page}
+
+
+<!--充值内容区 结束-->
+
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+</body>
+</html>

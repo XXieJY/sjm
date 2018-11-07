@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>{:C('WebName')}-账户充值</title>
+
+<link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+	<link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+
+<!-- <link href="http://static.baozoukanshu.com/home/nh/css/best.css" type="text/css" rel="styleSheet"> -->
+<link href="http://static.baozoukanshu.com/home/nh/css/layer.css" type="text/css" rel="styleSheet" id="layermcss">
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/pay_read.css">
+<!--<link href="http://static.baozoukanshu.com/home/nh/css/alipay.css" type="text/css" rel="styleSheet">-->
+<link href="__PUBLIC__/Wap/css/alipay.css" type="text/css" rel="styleSheet">
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+</head>
+
+<body>
+
+<include file="Index:top"/>
+<!--
+<div class="logging_status nh_wap_bgcolor">
+<div class="ylogin clearfix">
+<p class="ylogin_t clearfix">
+<span class="span_0">账户余额:</span>
+<span class="egold_num">{$userinfo.alance}阅读币</span>
+</p>
+<p class="ylogin_b">
+<span class="span_0">我的账号:</span>
+<span class="mar_r8 vip_name">{$userinfo.pen_name}</span>
+</p>
+</div>
+</div>
+-->
+
+<p class="rclist-title"><span></span>账户充值
+		<a class="fr" href="/Home/Pay/record">
+			
+			充值记录
+		</a>
+	</p>
+<!--<div class='show_first_pay'>新用户充值大优惠 仅此一次</div>-->
+<div class="recharge_shb">
+<if condition="$wx eq 1">
+<form action="/Home/Pay/pay" method="get" id="payform">
+
+
+<ul class="websign clearfix" id="pay_list">
+<li class="">
+<a class="apppay" href="javascript:void(0);" id="shubi1" data-chargetype='10'>
+<span class="pay_num" >30元</span>
+<span class="pay_text">3000阅读币</span>
+<div class="ext">多送200阅读币</div>
+
+</a>
+</li>
+<li class="pay_act">
+<span class="top_right_corner"></span>
+<a class="apppay" href="javascript:void(0);" id="shubi2" data-chargetype='10'>
+<span class="pay_num" id="50">
+50元</span>
+<span class="pay_text">
+5000阅读币
+</span>
+<div class="ext">多送400阅读币</div>
+
+</a>
+</li>
+<li class="">
+<span class="top_right_corner"></span>
+<a class="apppay" href="javascript:void(0);" id="shubi3" data-chargetype='10'>
+<span class="pay_num">100元</span>
+<span class="pay_text">
+10000阅读币 
+</span>
+<div class="ext">多送600阅读币</div>
+</a>
+</li>
+<li class="">
+<span class="top_right_corner"></span>
+<a class="apppay" href="javascript:void(0);" id="shubi4" data-chargetype='10'>
+<span class="pay_num">200元</span>
+<span class="pay_text">
+20000阅读币
+</span>
+<div class="ext">多送800阅读币</div>
+</a>
+</li>
+<li class="">
+<a class="apppay" href="javascript:void(0);" id="baoyue1" data-chargetype='16'>
+<span class="pay_num">129元</span>
+<span class="pay_text">
+只需129元，开通之日起100天内全部作品免费畅读
+<!--<font class="red">全场书籍畅读30天</font>-->
+</span>
+</a>
+</li>
+<li class="">
+<a class="apppay" href="javascript:void(0);" id="baoyue4" data-chargetype='17'>
+<span class="pay_num">299元</span>
+<span class="pay_text">
+只需299元，开通之日起365天内全部作品免费畅读
+<!--<font class="red">全场书籍畅读365天</font>-->
+</span>
+</a>
+</li>
+</ul>
+<div class="ranking-listbottom diplay-flex">
+			<div class="text-align-center  cz-count-item-label" style="font-size: 14px;padding: 0px 10px 5px;">
+				其他金额
+			</div>
+			<div class="flex-1 " style="padding: 0px 10px 5px;">
+				<input type="number" class="other-je-input" name="money" value="50" id="money" />元
+				<input type="hidden" name="payChannelType" id="payChannelType" value="{$type}">
+			</div>
+		</div>
+</form>
+<div class="mysubmit"><a href="javascript:;" id="subbtn">提交订单</a></div>
+<else />
+<form action="/Home/Pay/pay" method="get" id="payform">
+
+
+<ul class="websign clearfix" id="pay_list">
+<li class="">
+<a class="apppay" href="javascript:void(0);" id="shubi1" data-chargetype='13'>
+<span class="pay_num" >30元</span>
+<span class="pay_text">3000阅读币</span>
+<div class="ext">多送200阅读币</div>
+
+</a>
+</li>
+<li class="pay_act">
+<span class="top_right_corner"></span>
+<a class="apppay" href="javascript:void(0);" id="shubi2" data-chargetype='13'>
+<span class="pay_num" id="50">
+50元</span>
+<span class="pay_text">
+5000阅读币
+</span>
+<div class="ext">多送400阅读币</div>
+
+</a>
+</li>
+<li class="">
+<span class="top_right_corner"></span>
+<a class="apppay" href="javascript:void(0);" id="shubi3" data-chargetype='13'>
+<span class="pay_num">100元</span>
+<span class="pay_text">
+10000阅读币 
+</span>
+<div class="ext">多送600阅读币</div>
+</a>
+</li>
+<li class="">
+<span class="top_right_corner"></span>
+<a class="apppay" href="javascript:void(0);" id="shubi4" data-chargetype='13'>
+<span class="pay_num">200元</span>
+<span class="pay_text">
+20000阅读币
+</span>
+<div class="ext">多送800阅读币</div>
+</a>
+</li>
+<li class="">
+<a class="apppay" href="javascript:void(0);" id="baoyue1" data-chargetype='16'>
+<span class="pay_num">129元</span>
+<span class="pay_text">
+只需129元，开通之日起100天内全部作品免费畅读
+<!--<font class="red">全场书籍畅读30天</font>-->
+</span>
+</a>
+</li>
+<li class="">
+<a class="apppay" href="javascript:void(0);" id="baoyue4" data-chargetype='17'>
+<span class="pay_num">299元</span>
+<span class="pay_text">
+只需299元，开通之日起365天内全部作品免费畅读
+<!--<font class="red">全场书籍畅读365天</font>-->
+</span>
+</a>
+</li>
+</ul>
+<div class="ranking-listbottom diplay-flex">
+			<div class="text-align-center  cz-count-item-label" style="font-size: 14px;padding: 0px 10px 5px;">
+				其他金额
+			</div>
+			<div class="flex-1 " style="padding: 0px 10px 5px;">
+				<input type="number" class="other-je-input" name="money" value="50" id="money" />元
+				<input type="hidden" name="payChannelType" id="payChannelType" value="{$type}">
+			</div>
+		</div>
+</form>
+<div class="mysubmit"><a href="javascript:;" id="subbtn">提交订单</a></div>
+</if>
+
+<div class="rclist-main">
+	<p class="rclist-title"><span></span>充值提示</p>
+	<div class="ranking-list cz-tips margin-t10">
+		<p>1. 微信充值失败，建议使用其他浏览器（建议UC浏览器）打开本站（m.sjnovel.com）再进行微信充值。</p>
+		<p>2. 微信充值不成功，建议关注微信服务号水晶文学，微信号：shuijingshuo66，在服务号内环境完成充值。</p>
+		<p>3. 由于网络延迟问题可能导致充值失败，请多尝试一两次充值即可。</p>
+		<p>4. 长按底部二维码点击关注微信公众号"就看"，每天都有好书推荐。</p>
+		<p>5. 如有其他充值问题，请联系客服人员解决，QQ：3404797373</p>
+	</div>
+</div>
+</div>
+
+
+<include file="Index:bot"/>
+
+
+
+<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+
+<script>
+$(function(){
+ $("#pay_list").on("click","li",function(e){
+e?e.stopPropagation():event.cancelBubble = true;
+$(this).addClass("pay_act").siblings("li").removeClass("pay_act");
+
+
+var pay_text=$(".pay_act").find(".pay_num").text();
+pay_num=parseFloat($(document).find(".pay_act").find(".pay_num").text());
+pay_text=$(document).find(".pay_act").find(".pay_text").html();
+
+$("#money").val(pay_num);
+
+var chargetype = $(document).find(".pay_act").find(".apppay").attr('data-chargetype');
+$("#payChannelType").val(chargetype);
+
+
+
+});
+ 
+$('#subbtn').click(function(){
+
+setTimeout(function(){
+$('#payform').submit();
+},300);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

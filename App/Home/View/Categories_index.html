@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8" />
+   <meta content="telephone=no" name="format-detection" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+   <title>{$bookinfo.book_name}最新章节列表_{$bookinfo.book_name}全文阅读,{$bookinfo.book_name}txt全集下载_{$bookinfo.pen_name}-{:C('webname')}</title>
+   <link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+   <link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+   <link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+   <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+   <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+   <style type="text/css">
+      .tabs div{
+         width:50%;
+         float:left;
+         text-align:center;
+         height:30px;
+         line-height:30px;
+         background-color:#fff;
+         color:#666666;
+      }
+      .tabs div.activite{
+         background-color:#e95e85;
+         color:#fff;
+      }
+
+   </style>
+
+
+</head>
+<body class="categories-body">
+<include file="Index:top"/>
+<div class="book-name">{$bookinfo.book_name}</div>
+<div class="tabs">
+
+   <if condition="$xuxie==1">
+      <a href="/Categories/{$bookinfo.book_id}/paixu/desc"><div>倒序</div></a>
+      <a href="/Categories/{$bookinfo.book_id}/paixu/asc"><div class="activite">正序</div></a>
+
+      <else/>
+      <a href="/Categories/{$bookinfo.book_id}/paixu/desc"><div class="activite">倒序</div></a>
+      <a href="/Categories/{$bookinfo.book_id}/paixu/asc"><div>正序</div></a>
+
+   </if>
+
+
+</div>
+
+<div id="div">
+<ul class="content">
+   <li class="content-label">全部章节</li>
+
+   <volist name="chapterlist" id="vo">
+
+      <a href="/chapter/{$bookinfo.book_id}/{$vo.num}"> <li><if condition="$vo[the_price]!=0"><img src="__PUBLIC__/Wap/images/vip.png"/></if>{$vo.title}</li></a>
+
+   </volist>
+</ul>
+</div>
+
+{$page}
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<script>
+    $(function(){
+        var $navLis = $('.tabs').find("div");
+        $navLis.on('touchend', function(event){
+            var $target = $(event.currentTarget);
+            var index = $navLis.index($target);
+            $navLis.removeClass('activite');
+            $target.addClass('activite');
+        });
+    });
+
+</script>
+</body>
+</html>

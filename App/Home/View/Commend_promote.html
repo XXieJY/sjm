@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>{$content[title]}_{$books.book_name}-{:C('webname')}</title>
+<meta name="keywords" content="{$content[title]},{$books.book_name},{:C('webname')}" />
+<meta name="description" content="{$books.book_name}小说由作者：{$user.pen_name}原创,是难得一见的好书,在{:C('webname')}全面连载!欢迎大家免费收看:{$content[title]}" />
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+    <link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+    <link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/reading.js"></script>
+
+
+ <script type="text/javascript">
+$(function () {
+    var booksname="{$books.book_name}";
+    var art_title = "{$content[title]}";
+    var art_url = '/chapter/{$books.book_id}/{$content['num']}.html';
+    $.cookie("history", "{title:\""+booksname +":"+ art_title + "\""+",url:\"" + art_url + "\"}", {expires: 7, path: '/'});
+});
+
+ </script>
+
+    <style type="text/css">
+
+        .juzhong {
+            padding-left:10px;
+            padding-right:10px;
+        }
+        .title {
+            line-height: 40px;
+            font-weight: bold;
+            color: #666;
+            font-size: 18px;
+        }
+        .content {
+            padding-bottom: 10px;
+        }
+        .content p {
+            padding:0.3em 0;
+            line-height: 1.8em;
+            font-size: 16px;
+            text-indent: 2em;
+            color:#666;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="juzhong">
+  <div class="title">{$content.title}</div>
+  <div class="content">
+   <p>后续内容由微信公众号“水晶小说”独家发布,请长按下面的二维码关注“就看”微信公众号，点击公众号下面的菜单“<span style="color:green;">阅读记录</span>”，继续阅读后续内容。本书书名《{$books.book_name}》</p>
+   <p style="text-align: center;"><font style="color: #E562A3;">限时关注有惊喜</font><br><img src="__PUBLIC__/Wap/images/qrcode_jiukan.png" style="width:70%"><br><font style="color: #E562A3;">一言不合就送礼</font></p>
+  </div>
+</div>
+</body>
+</html>

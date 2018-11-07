@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>网站登录-{:C('webname')}</title>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+<link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+function checkForm() {
+if(myform.username.value==""){
+	alert("账号名不能为空");
+	myform.username.focus();
+	return false;
+}
+if(myform.password.value==""){
+	alert("密码不能为空");
+	myform.password.focus();
+	return false;
+
+}
+
+}
+
+</script>
+
+</head>
+<body class="login-body">
+<header>
+	<img src="__PUBLIC__/Wap/images/logo1.png" class="logo"/>
+	<ul class="nav">
+		<li>
+			<a href="/Home/Index/index">首页</a>
+		</li>
+		<li>
+			<a href="/Home/Book/index/gender/3/type/50/state/3/vip/3/click/0.html">书库</a>
+		</li>
+		<li>
+			<a href="/Home/Rank/index">排行</a>
+		</li>
+
+		<li>
+			<a href="/Home/Pay/index">充值</a>
+		</li>
+	</ul>
+</header>
+<div class="wrap-logo-way">
+	<ul class="login-way">
+		<li>登录</li>
+		<li><a href="/Home/Accounts/qq"><img src="__PUBLIC__/Wap/images/share_icon_4.png"/></a></li>
+		<!-- <li><img src="__PUBLIC__/Wap/images/share_icon_1.png"/></li> -->
+		<li><a href="/Home/Accounts/weixin"><img src="__PUBLIC__/Wap/images/share_icon_2.png"/></a></li>
+	</ul>
+</div>
+<div class="wrap-main">
+	<div class="main">
+		<div class="main-top">
+			<div>水晶登录</div>
+		</div>
+
+		<form name="myform" action="/Home/Login/login" method="post" onsubmit="return checkForm()">
+		<div class="wrap-login-form">
+			<div>
+				<label>账号</label>
+				<input type="text" name="username" value="" placeholder="请输入账号"/>
+			</div>
+			<div>
+				<label>密码</label>
+				<input type="password" name="password" value="" placeholder="请输入密码"/>
+			</div>
+		</div>
+		<table width="100%">
+			<tr>
+				   <td valign="middle" align="center"><a href="/Home/Accounts/qq"><img src="__PUBLIC__/Wap/images/share_icon_4.png"/></a></td>
+				   <!-- <td valign="middle" align="center"><a href="#"><img src="__PUBLIC__/Wap/images/share_icon_1.png"/></a></td> -->
+				   <td valign="middle" align="center"><a href="/Home/Accounts/weixin"><img src="__PUBLIC__/Wap/images/share_icon_2.png"/></a></td>
+				</tr>
+		</table>
+		<input type="submit" class="login-btn" value="登陆"/>
+		</form>
+
+
+
+		<div class="regi-way">
+			<span><a href="/Home/Register/index">手机注册</a></span>
+			<span>忘记密码？</span>
+		</div>
+	</div>
+
+	<dl>
+	   <dd>温馨提示：</dd>
+	   <dd>1、如登录异常，请联系客服QQ:3294039340</dd>
+	</dl>
+</div>
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+</body>
+</html>

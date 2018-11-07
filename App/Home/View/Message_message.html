@@ -1,0 +1,47 @@
+<volist name="showArr" id="vo">
+    <div class="mod-content">
+        <div class="item-comment">
+            <div class="item-comment-title">
+                <if condition="$vo[top]==1"><span class="tag-stick">[置顶]</span></if>
+                <if condition="$vo[good]==1"><span class="tag-good">[精华]</span></if>
+                <span>{$vo.title}</span>
+            </div>
+            <div class="item-comment-content">
+                {$vo.content}
+            </div>
+            <div class="item-comment-bottom">
+                <span class="comment-user-name">{$vo.pen_name}</span>
+                <span class="comment-times">{$vo.time}</span>
+                <a href="/Home/Message/index/id/{$vo.f_id}.html"><span class="button-comment-reply"><i class="icon-comment"></i>回复</span></a>
+            </div>
+            <div class="comment-reply">
+                <ul>
+                    <volist name="vo[zmesg]" id="vv">
+                        <li class="item-reply">
+                                    <span class="reply-user-name">
+                                       {$vv.pen_name}
+                                    </span>
+                            <span class="reply-txt">
+
+                                       {$vv.content}
+                                    </span>
+                        </li>
+
+                    </volist>
+
+                    <!--
+                    <if condition="$foo|count($vo[zmesg]) gt 2">
+                        <div id="huifu"> </div>
+                        <li><a href="javascript:replayed({$vo.f_id});"> <div class="load-more-button" id="replay-ajax">查看更多回复</div></a></li>
+                    </if>
+                    -->
+
+                </ul>
+
+                <input type="hidden" id="replayid" value="{$vo.book_id}"/>
+
+            </div>
+        </div>
+    </div>
+
+</volist>

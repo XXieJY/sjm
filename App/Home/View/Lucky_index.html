@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>翻版抽奖</title>
+<link rel="shortcut icon" href="Favicon.ico" type="image/x-icon" />
+    <link href="__PUBLIC__/Wap/css/reset.css" rel="stylesheet">
+    <link href="__PUBLIC__/Wap/css/cus-css.css" rel="stylesheet">
+    <link href="__PUBLIC__/Wap/css/main.css" rel="stylesheet">
+
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.flip.min.js"></script>
+ <script type="text/javascript">
+    $(function () {
+        $("#prize li").each(function () {
+            var p = $(this);
+            var c = $(this).attr('class');
+            p.css("background-color", c);
+            p.click(function () {
+                $("#prize li").unbind('click');
+                $.ajax({
+                    type: 'GET',
+                    url: '/Home/Lucky/chou.html',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (json) {
+                         if (json == 2) {
+                            alert("余额不够抽奖了");
+                            window.location.href="/Home/Pay/index.html";
+                            return 0;
+                        } else if (json == 3) {
+                            alert("奖品全部被抽完");
+                            return 0;
+                        }
+                        var prize = json.yes;
+                        p.flip({
+                            direction: 'rl',
+                            content: prize,
+                            color: c,
+                            onEnd: function () {
+                                p.css({"font-size": "9px", "line-height": "60px"});
+                                p.attr("id", "r");
+                                $("#viewother").show();
+                                $("#prize li").unbind('click').css("cursor", "default").removeAttr("title");
+                            }
+                        });
+                        $("#data").data("nolist", json.no);
+                    }
+                });
+            });
+        });
+        $("#viewother").click(function () {
+            var mydata = $("#data").data("nolist"); //获取数据
+            var mydata2 = eval(mydata);
+
+            $("#prize li").not($('#r')[0]).each(function (index) {
+                var pr = $(this);
+                pr.flip({
+                    direction: 'bt',
+                    color: 'lightgrey',
+                    content: mydata2[index],
+                    onEnd: function () {
+                        pr.css({"font-size": "9px", "line-height": "60px", "color": "#333"});
+                        $("#viewother").hide();
+                        $("#repeat").show();
+                    }
+                });
+            });
+            $("#data").removeData("nolist");
+        });
+        $("#repeat").click(function () {
+            window.location.href='/Home/Lucky/index';
+        });
+    });
+</script>
+</head>
+<body>
+<include file="Index:top" />
+<div id="box">
+  <div class="main">
+    <div class="main-top">
+      <div><a href="/Home/Lucky/record.html" style="float: right; padding-right: 10px;color: #E562A3">抽奖记录</a>翻版抽奖</div>
+    </div>
+      <div class="xinxi">
+    <p style='font-size: 16px;'>阅读币余额为  <span style='color: #E562A3; font-size: 18px;'>{$to.alance}</span></p>
+     <p><span style="color:#E562A3">奖品说明：</span></p>
+    <div><p>一等奖:一台Iphone 6S，二等奖：一台亚马逊阅读器，三等奖：100元话费，</p></div>
+    <div><p>四等奖：50元话费，五等奖：30元话费，六等奖：200M流量，</p></div>
+    <div><p>七等奖：100M流量，八等奖：200阅读币，九等奖：100阅读币 </p></div>
+    <div><p>十等奖：50阅读币，十一等奖：2颗钻石，十二等奖：1朵鲜花 </p></div>
+
+    <p  style="color:#E562A3;text-align:center">点击数字方块，翻转即抽奖。</p>
+    <ul id="prize">
+      <li class="#666666" title="点击抽奖">1</li>
+      <li class="#a2295e" title="点击抽奖">2</li>
+      <li class="#0295a5" title="点击抽奖">3</li>
+      <li class="#203783" title="点击抽奖">4</li>
+      <li class="#259c3e" title="点击抽奖">5</li>
+      <li class="#706d36" title="点击抽奖">6</li>
+      <li class="#9c663a" title="点击抽奖">7</li>
+      <li class="#d3d10d" title="点击抽奖">8</li>
+      <li class="#366b6f" title="点击抽奖">9</li>
+      <li class="#e15852" title="点击抽奖">10</li>
+      <li class="#9fabd3" title="点击抽奖">11</li>
+      <li class="#7b352b" title="点击抽奖">12</li>
+    </ul>
+    <div style="clear: both;"></div>
+    <div id="data"></div>
+   <div class="annius"><a href="javascript:void(0)" id="viewother">【翻开其他】</a><a href="javascript:void(0);" id="repeat">【再来一次】</a></div>
+              <div  style=""> <p  style="color: #E562A3">领奖必读！</p>
+             <p>1.抽到一等奖至四等奖的朋友，请及时与客服联系，而抽到五等奖至十二等奖的朋友请耐心等待，系统将自动发放至后台。</p>  
+             <p>2. 获取话费、Iphone、亚马逊阅读器的获奖用户，请获奖后立即完善用户资料，网站将根据后台的用资料中的QQ和手机号及通讯地址，进行奖品的发放。</p>   
+              <p>3 其他奖品领取问题，请联系客服 QQ：3404797373。</p>   
+</div>  
+   </div>
+  </div>
+</div>
+<include file="Index:bot" />
+</body>
+</html>

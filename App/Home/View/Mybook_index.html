@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>我的书架</title>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<link href="__PUBLIC__/Wap/css/reset.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/Wap/css/read.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+
+	<script type="text/javascript">
+
+		var page =2;
+		function look() {
+            $.ajax({
+                url: "/Home/Mybook/more.html",
+                type: "post",
+                data: 'page='+page,
+                success: function (data) {
+
+                    if (data == 1) {
+                        $("#more-ajax").remove();
+                        $("#zuijia").append("<a class=\"pursuit-btn\">没有内容了...</a>");
+                    } else {
+                        $("#zuijia").append(data);
+                        page++;
+                    }
+                }
+            });
+        }
+
+	</script>
+	<script language=javascript>
+        $(function () {
+            if($.cookie("history")!=null){
+                var json = eval("(" + $.cookie("history") + ")");
+                var shuzu="<a href=\""+json.url+"\">"+json.title+"</a>";
+                $(".recently").html(shuzu);
+            }
+        });
+	</script>
+	<style>
+
+		.recently_img{
+			float: left;
+			border-right: 2px solid #E562A3;
+		}
+		.recently{
+			line-height: 20px;
+			text-indent: 5px;
+			height: 20px;
+			white-space:nowrap;
+			text-overflow:ellipsis;
+			-o-text-overflow:ellipsis;
+			overflow: hidden;
+		}
+		.bookshelf{
+
+			width: 70px;
+			height: 100%;
+			padding-left: 10px;
+			float: right;
+
+		}
+
+	</style>
+</head>
+<body>
+<!--公共头部-->
+<include file="Index:top"/>
+<!--公共头部结束-->
+<div class="rclist-main border-radius-5 padding-10 top-tab">
+	<div class="recently_img" style="border-right:0px solid #fff";><img src="__PUBLIC__/Wap/images/clock.png" width="20px;" class="clock-icon"/><span style="color: #E562A3;">继续阅读</span></div>
+	<div class="recently">没有阅读记录</div>
+</div>
+
+	<!--我的追书内容区-->
+	<div class="rclist-main person-main pursuit-main pursuit-read-0223"><p class="rclist-title pursuit-title">我追的书（{$count}）</p></p>
+		<div class="person-wrap">
+			<!--我的追书列表-->
+        <div id="zuijia">
+			<volist name="books" id="vo">
+			<div class="person-read clearfix">
+				<a href="javascript:;">
+					<div class="person-readimg fl">
+						<img src="/Upload/Book/zhong/{$vo.upload_img}"/>
+					</div>
+					<div class="person-rmessage person-rmessage-goon fl">
+						<a href="/books/{$vo.book_id}"><p>{$vo.book_name}</p></a>
+						<a href="/chapter/{$vo.book_id}/{$vo.num}"><p>最新更新:{$vo.title}</p></a>
+						<p ><a class="goread-btn" href="/chapter/{$vo.book_id}/{$vo.chapter_id}">继续阅读</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="goread-btn" href="/Home/Mybook/del/bookid/{$vo.book_id}">取消追书</a></p>
+					</div>
+					<div class="person-rtime person-rtime-goon fl"><?php echo date('m-d H:i:s',strtotime($vo['time']));?></div>
+				</a>
+			</div>
+			</volist>
+       </div>
+			<!--我的追书列表 结束-->
+
+		</div>
+
+		<if condition="$count gt 5">
+			<a id="more-ajax" href="javascript:look();" class="pursuit-btn">查看更多</a>
+		</if>
+
+
+	</div>
+
+	<!--充值内容区 结束-->
+
+	<!--公共底部-->
+	<include file="Index:bot"/>
+	<!--公共底部 结束-->
+<!--
+	<div id="pursuit-layer">
+		<div class="reply-shade"></div>
+		<div class="pursuit-del">
+			<a href="">删除书籍</a>
+			<a href="">置顶</a>
+			<a href="javascript:void(0);" id="pursuit-cancle">取消</a>
+		</div>
+	</div>
+	-->
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+
+
+
+<script src="__PUBLIC__/Wap/js/read.js"></script>
+</body>
+</html>

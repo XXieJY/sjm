@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>小说排行榜_热门小说推荐_全本小说_完本小说排行榜-{:C('WebName')}</title>
+	<meta name="keywords" content="小说排行榜,热门小说推荐,全本小说,完本小说排行榜,{:C('WebName')}"/>
+	<meta name="description" content="{:C('WebName')}小说排行榜提供最新最全的小说排行榜单,包括:奇幻玄幻排行,热门小说推荐榜,全本小说榜,完本小说排行榜,想了解跟多跟新请来<{:C('WebName')}>"/>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<link href="__PUBLIC__/Wap/css/reset.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/Wap/css/read.css" type="text/css" rel="stylesheet" />
+	<link href="__PUBLIC__/Wap/css/cus-css.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+<style type="text/css">
+
+	.like-list-list{
+		height:auto;
+		overflow:hidden;
+
+	}
+	.like-list-list li{
+		float:left;
+		/*width:21.25%;
+        margin:5px 0 5px 3%;*/
+		width:25%;
+		text-align: center;
+		padding-bottom:10px;
+	}
+	.like-list-list li img{
+		width:100%;
+	}
+	.like-list-list li p{
+
+		text-align:center;
+		overflow:hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size:0.75em;
+	}
+</style>
+
+</head>
+<body>
+<!--公共头部-->
+<include file="Index:top"/>
+<!--公共头部结束-->
+
+	<!-- 排行内容区-->
+	<!--<div class="ranking-top">
+		<a href="javascript:;" class="actived">月票榜</a><a href="javascript:;">订阅榜</a><a href="javascript:;">追书榜</a><a href="javascript:;">捧场榜</a><a href="javascript:;">新书榜</a><a href="javascript:;">字数榜</a><a href="javascript:;">完本榜</a><a href="javascript:;">大神榜</a>
+	</div>-->
+	<div class="rclist-main">
+		<p class="rclist-title"><span></span>钻石排行榜</p>
+		<div class="ranking-list">
+			<div class="ranking-listtop">
+				<ul class="like-list-list">
+                  <volist name="vipvote" id="vo" offset="0" length="4">
+					<li>
+						<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a>
+						<p>{$vo.book_name}</p>
+					</li>
+				  </volist>
+				</ul>
+			</div>
+			<div class="ranking-listbottom">
+               <volist name="vipvote" id="vo" offset="4" length="6">
+				   <p><span>{++$a+4}</span><a href="/books/{$vo.book_id}.html">{$vo.book_name}</a></p>
+			   </volist>
+			</div>
+		</div>
+	</div>
+	<div class="rclist-main">
+		<p class="rclist-title"><span></span>作品订阅榜</p>
+		<div class="ranking-list">
+			<div class="ranking-listtop">
+				<ul class="like-list-list">
+
+
+				<volist name="dingyue" id="vo" offset="0" length="4">
+					<li>
+						<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a>
+						<p>{$vo.book_name}</p>
+					</li>
+				</volist>
+
+				</ul>
+			</div>
+			<div class="ranking-listbottom">
+
+			<volist name="dingyue" id="vo" offset="4" length="6">
+				<p><span>{++$b+4}</span><a href="/books/{$vo.book_id}.html">{$vo.book_name}</a></p>
+			</volist>
+
+			</div>
+		</div>
+	</div>
+
+<div class="rclist-main">
+	<p class="rclist-title"><span></span>作品点击榜</p>
+	<div class="ranking-list">
+		<div class="ranking-listtop">
+			<ul class="like-list-list">
+
+
+				<volist name="dianji" id="vo" offset="0" length="4">
+					<li>
+						<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a>
+						<p>{$vo.book_name}</p>
+					</li>
+				</volist>
+
+			</ul>
+		</div>
+		<div class="ranking-listbottom">
+
+			<volist name="dingyue" id="vo" offset="4" length="6">
+				<p><span>{++$c+4}</span><a href="/books/{$vo.book_id}.html">{$vo.book_name}</a></p>
+			</volist>
+
+		</div>
+	</div>
+</div>
+
+<div class="rclist-main">
+	<p class="rclist-title"><span></span>打赏排行榜</p>
+	<div class="ranking-list">
+		<div class="ranking-listtop">
+			<ul class="like-list-list">
+
+
+				<volist name="exceptional" id="vo" offset="0" length="4">
+					<li>
+						<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a>
+						<p>{$vo.book_name}</p>
+					</li>
+				</volist>
+
+			</ul>
+		</div>
+		<div class="ranking-listbottom">
+
+			<volist name="dingyue" id="vo" offset="4" length="6">
+				<p><span>{++$d+4}</span><a href="/books/{$vo.book_id}.html">{$vo.book_name}</a></p>
+			</volist>
+
+		</div>
+	</div>
+</div>
+
+
+<div class="rclist-main">
+	<p class="rclist-title"><span></span>鲜花排行榜</p>
+	<div class="ranking-list">
+		<div class="ranking-listtop">
+			<ul class="like-list-list">
+
+
+				<volist name="vote" id="vo" offset="0" length="4">
+					<li>
+						<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a>
+						<p>{$vo.book_name}</p>
+					</li>
+				</volist>
+
+			</ul>
+		</div>
+		<div class="ranking-listbottom">
+
+			<volist name="dingyue" id="vo" offset="4" length="6">
+				<p><span>{++$e+4}</span><a href="/books/{$vo.book_id}.html">{$vo.book_name}</a></p>
+			</volist>
+
+		</div>
+	</div>
+</div>
+
+<div class="rclist-main">
+	<p class="rclist-title"><span></span>收藏排行榜</p>
+	<div class="ranking-list">
+		<div class="ranking-listtop">
+			<ul class="like-list-list">
+
+
+				<volist name="collection" id="vo" offset="0" length="4">
+					<li>
+						<a href="/books/{$vo.book_id}.html"><img src="/Upload/Book/zhong/{$vo.upload_img}"/></a>
+						<p>{$vo.book_name}</p>
+					</li>
+				</volist>
+
+			</ul>
+		</div>
+		<div class="ranking-listbottom">
+
+			<volist name="dingyue" id="vo" offset="4" length="6">
+				<p><span>{++$f+4}</span><a href="/books/{$vo.book_id}.html">{$vo.book_name}</a></p>
+			</volist>
+
+		</div>
+	</div>
+</div>
+	<!--排行内容区 结束-->
+
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+<script>
+	$(".ranking-top a").on("click", function(){
+		$(".ranking-top a").removeClass("actived");
+		$(this).addClass("actived");
+	})
+</script>
+</body>
+</html>

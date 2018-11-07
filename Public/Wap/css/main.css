@@ -1,0 +1,56 @@
+#main{
+    width:100%;
+    margin:10px auto 0 auto;
+    border:1px solid #d3d3d3;
+    background:#fff;
+    -moz-border-radius:5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:5px;
+}
+h3.top_title{
+    margin:4px 10px; 
+    padding:10px; 
+    border-bottom:1px solid #d3d3d3;
+    font-size:16px; 
+    color:#a84c10;
+}
+.demo{
+    width:96%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center
+}
+.demo p{
+    height:10%;
+    font-size: 12px;
+    text-align: left;
+    margin-top: 4px;
+}
+#prize{
+	width: 100%;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#prize li{
+	width:32.5%;
+	height:60px;
+	line-height:60px;
+	margin:1px;
+	font-size:12px;
+	text-align:center;
+	vertical-align: middle;
+	color:#fff;
+        float: left;
+	cursor:pointer
+}
+.annius{ background-color: #1b505f;text-align:center; margin-top: 15px;}
+#viewother,#repeat{
+    height:40px; 
+    line-height:40px;
+    text-align:center;
+    font-size:18px; 
+    color: #ffffff;
+    display: none;
+}

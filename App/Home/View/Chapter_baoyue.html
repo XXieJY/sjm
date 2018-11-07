@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>{$content[title]}_{$books.book_name}-{:C('webname')}</title>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<meta name="keywords" content="{$content[title]},{$books.book_name},{:C('webname')}" />
+<meta name="description" content="{$books.book_name}小说由作者：{$user.pen_name}原创,是难得一见的好书,在{:C('webname')}全面连载!欢迎大家免费收看:{$content[title]}" />
+<link rel="shortcut icon" href="Favicon.ico" type="image/x-icon" />
+<link href="__PUBLIC__/Wap/style.css" type="text/css" rel="stylesheet" />
+    <link href="__PUBLIC__/Wap/css/reset.css" type="text/css" rel="stylesheet" />
+    <link href="__PUBLIC__/Wap/css/read.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+ <script type="text/javascript">
+$(function () {
+    var booksname="{$books.book_name}";
+    var art_title = "{$content[title]}";
+    var art_url = document.URL;
+    $.cookie("history", "{title:\""+booksname +":"+ art_title + "\""+",url:\"" + art_url + "\"}", {expires: 7, path: '/'});
+});
+
+ </script>
+</head>
+<body>
+<include file="Index:top" />
+<div id="box">
+<div class="main">
+    <div class="main-top">
+      <div>该书为包月书籍</div>
+    </div>
+      <div class="xinxi">
+        <span>包月：</span><em class="count">5000</em> 阅读币 1月<br/>
+        <span>包月：</span><em class="count">10000</em> 阅读币 2月送10天<br/>
+        <span>包月：</span><em class="count">15000</em> 阅读币 3月送20天<br/>
+        <span>包月：</span><em class="count">20000</em> 阅读币 4月在送一月<br/>
+        <span>包月：</span><em class="count">25000</em> 阅读币 5月再送2月<br/>
+      </div>
+    <a class="anniu-btn"  href="/Home/Baoyue/vip.html">开通包月</a>
+  </div>  
+</div>
+<include file="Index:bot" />
+</body>
+</html>

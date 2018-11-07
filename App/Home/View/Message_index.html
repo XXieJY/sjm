@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>{$info.book_name}_留言列表-{:C('WebName')}</title>
+    <link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+    <script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+    <link href="__PUBLIC__/Wap/css/reset.css" type="text/css" rel="stylesheet" />
+    <link href="__PUBLIC__/Wap/css/read.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+    <style type="text/css">
+        .reply-btn{
+            display:inline-block;
+            width:100%;
+            height:36px;
+            background:#e95e85;
+            color:#fff;
+            line-height:36px;
+            text-align:center;
+            border-radius:3px;
+            margin-bottom:10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+    function checkContent() {
+
+       if(myform.content.value==""){
+
+        alert("评论内容不能为空");
+        myform.content.focus();
+        return false;
+    }else {
+           return true;
+       }
+
+
+}
+
+    </script>
+
+</head>
+<body>
+<!--公共头部-->
+
+<include file="Index:top"/>
+<!--公共头部结束-->
+
+<!--回复内容区-->
+<div class="reply-wrap">
+    <div class="reply-main">
+        <p>写给《{$mesfes.title}》的评论</p>
+        <form name="myform" action="/Home/Message/replay" method="post" onsubmit="return checkContent()">
+
+            <div class="reply-content comment-content">
+
+                <textarea  class="reply-textarea" name="content" placeholder="请输入内容..." value="" ></textarea>
+                <input type="hidden" name="bookid" value="{$mesfes.book_id}"/>
+                <input type="hidden" name="id" value="{$mesfes.f_id}"/>
+
+            </div>
+            <input type="submit" class="reply-btn" value="发表">
+
+        </form>
+
+
+        <p style="font-size:.875em;">首页 &gt; {$book.book_name} &gt; 回应列表</p>
+    </div>
+</div>
+<!--回复内容区 结束-->
+
+<!--公共底部-->
+<include file="Index:bot"/>
+<!--公共底部 结束-->
+
+<!--弹出框-->
+
+<!--弹出框 结束-->
+
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<script src="__PUBLIC__/Wap/js/read.js"></script>
+</body>
+</html>

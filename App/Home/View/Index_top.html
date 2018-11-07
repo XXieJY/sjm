@@ -1,0 +1,64 @@
+<header>
+    <a href="/Home/Index/index.html"><img src="__PUBLIC__/Wap/images/logo1.png" class="logo"/></a>
+    <ul class="nav">
+        <li>
+            <a href="/Home/Index/index">首页</a>
+        </li>
+        <li>
+            <a href="/Home/Book/index/gender/3/type/50/state/3/vip/3/click/0.html">书库</a>
+        </li>
+        <li>
+
+
+            <a href="/Home/Rank/index">排行</a>
+        </li>
+        <!--<li>
+            <a href="#">精品</a>
+        </li>-->
+        <li>
+            <a href="/Home/Pay/index">充值</a>
+        </li>
+    </ul>
+</header>
+<script type="text/javascript">
+
+    var user;
+    if ($.cookie("user_id")){
+     user="<div class=\"wrap-logo-way\">";
+     user+="<ul class=\"wrap-logined\">";
+     user+="<li class=\"fl\" style=\"margin-left: 32px;\">";
+     user+="<a href=\"/Home/Mybook/index\">我的书架</a>";
+     user+="</li>";
+     
+     user+="<a href=\"/Home/Center/index\"><li>"+ $.cookie("pen_name") +"</li></a>";
+     user+="<a href=\"/Home/Center/index\"><li class=\"wrap-tx\"><img src=\"/Upload/upload_portrait/" + $.cookie("portrait") + "\" style=\"border-radius:50%;\"/></li></a>";
+     user+="</ul>";
+     user+="</div>";
+
+     document.write(user);
+
+    }else{
+
+        user="<div class=\"wrap-logo-way\" id=\"div2\" style=\"display: block\">";
+        user+="<ul class=\"login-way\">";
+        user+="<li><a href=\"/Home/Login/index\" >登录</a></li>";
+        user+="<li style=\"width: 40px;\"><a href=\"/Home/Register/index\" >注册</a></li>";
+        user+="<li><a href=\"/Home/Accounts/qq.html\" ><img src=\"__PUBLIC__/Wap/images/share_icon_4.png\"/></a></li>";
+        user+="<li><a href=\"/Home/Accounts/weixin.html\" ><img src=\"__PUBLIC__/Wap/images/share_icon_2.png\"/></a></li>";
+        user+="</ul>";
+        user+="</div>";
+        document.write(user);
+
+
+    }
+
+</script>
+
+
+
+
+
+
+
+
+

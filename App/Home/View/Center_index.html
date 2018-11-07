@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title>我的账户</title>
+<link rel="shortcut icon" href="__PUBLIC__/Wap/images/Favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/Wap/js/zepto.min.js"></script>
+<link href="__PUBLIC__/Wap/css/reset.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/Wap/css/read.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.cookie.js"></script>
+	<script language=javascript>
+        $(function () {
+            if($.cookie("history")!=null){
+                var json = eval("(" + $.cookie("history") + ")");
+                var shuzu="<a href=\""+json.url+"\">"+json.title+"</a>";
+                $(".recently").html(shuzu);
+            }
+        });
+	</script>
+	<style>
+
+		.recently_img{
+			float: left;
+			border-right: 2px solid #E562A3;
+		}
+		.recently{
+			line-height: 20px;
+			text-indent: 5px;
+			height: 20px;
+			white-space:nowrap;
+			text-overflow:ellipsis;
+			-o-text-overflow:ellipsis;
+			overflow: hidden;
+		}
+		.bookshelf{
+
+			width: 70px;
+			height: 100%;
+			padding-left: 10px;
+			float: right;
+
+		}
+
+	</style>
+</head>
+<body>
+<!--公共头部-->
+<include file="Index:top"/>
+<!--公共头部结束-->
+<div class="rclist-main border-radius-5 padding-10 top-tab">
+	<div class="recently_img"><img src="__PUBLIC__/Wap/images/clock.png" width="20px;" class="clock-icon"/></div>
+	<div class="bookshelf"><a href="/Home/Mybook/index" class="js-bookshelf" style="color: #E562A3;">去书架</a></div>
+	<div class="recently">没有阅读记录</div>
+</div>
+
+	<!-- 个人中心内容区-->
+	<div class="rclist-main">
+		<p class="rclist-title"><span></span>个人中心</p>
+		<div class="person-wrap">
+			<p><span class="font-color-666666">ID：</span>{$userinfo.user_id}</p>
+			<p><span class="font-color-666666">昵称：</span>{$userinfo.pen_name}</p>
+			<div><span class="font-color-666666">等级：</span><img src="/Public/Vip/a{$userinfo.mem_vip}.gif" width="72" height="15" /></div>
+			<p><span class="font-color-666666">鲜花：</span><span class="font-color-e783ae">{$userinfo.vote}</span>&nbsp;&nbsp;<span class="font-color-666666">朵</span></p>
+			<p><span class="font-color-666666">钻石：</span><span class="font-color-e783ae">{$userinfo.vipvote}</span>&nbsp;&nbsp;<span class="font-color-666666">颗</span></p>
+			<p><span class="font-color-666666">阅读币：</span><span class="font-color-e783ae">{$userinfo.alance}</span></p>
+		</div>
+	</div>
+
+	<div class="rclist-main">
+		<p class="rclist-title"><span></span>功能菜单</p>
+		<div class="person-wrap font-color-666666">
+			<p class="fun-nav-item"><img src="__PUBLIC__/Wap/images/fun-nav-icon-01.png" class="fun-nav-icon"/><a href="/Home/Pay/index">账户充值</a></p>
+			<p class="fun-nav-item"><img src="__PUBLIC__/Wap/images/fun-nav-icon-02.png" class="fun-nav-icon"/><a href="/Home/Pay/record">充值记录</a></p>
+			<p class="fun-nav-item"><img src="__PUBLIC__/Wap/images/fun-nav-icon-03.png" class="fun-nav-icon"/><a href="/Home/Consumption/index">消费记录</a></p>
+			<p class="fun-nav-item"><img src="__PUBLIC__/Wap/images/fun-nav-icon-04.png" class="fun-nav-icon"/><a href="/Home/Sign/index">签到</a></p>
+
+			<!--
+			<p class="fun-nav-item"><img src="__PUBLIC__/Wap/images/fun-nav-icon-04.png" class="fun-nav-icon"/><a href="/Home/Lucky/index">翻版抽奖</a></p>
+			<p class="fun-nav-item"><img src="__PUBLIC__/Wap/images/fun-nav-icon-05.png" class="fun-nav-icon"/><a href="/Home/Lucky/record">抽奖记录</a></p>
+		   -->
+		</div>
+	</div>
+
+	<div class="rclist-main help-list person-main person-main-0223">
+		<p class="rclist-title"><span></span>帮助须知</p>
+		<div class="person-wrap">
+			<ol class="person-readnew help-list-ol font-color-666666">
+				<li>
+					首次充值网站赠送<span class="font-color-ea97ba">10%</span>的阅读币
+				</li>
+				<li>
+					水晶书城每千字为<span class="font-color-ea97ba">6</span>阅读币
+				</li>
+				<li>
+					充值赠送VIP，VIP每提升一个等级多送<span class="font-color-ea97ba">1%</span>的阅读币
+				</li>
+				<li>
+					VIP可以获取<span class="font-color-ea97ba">钻石</span>，充值也可以获取
+				</li>
+
+			</ol>
+		</div>
+	</div>
+	<!--充值内容区 结束-->
+
+	<!--公共底部-->
+	<include file="Index:bot"/>
+	<!--公共底部 结束-->
+</body>
+</html>
